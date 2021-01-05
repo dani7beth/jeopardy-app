@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'faker'
 
-10.times do
-    Thing.create(name: Faker::Ancient.unique.god)
-end
+Category.create(name: 'Assasination Classroom')
+Category.create(name: 'Demon Slayer')
+Category.create(name: 'Re:Zero')
+Category.create(name: 'Tokyo Ghoul')
+
+puts 'DB seeded'

@@ -10,7 +10,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <>
-      <NavBar />
       <FetchUser>
         <Container>
           <Switch>

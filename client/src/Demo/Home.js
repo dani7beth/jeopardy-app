@@ -1,13 +1,11 @@
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProvider";
-import { Header, Container } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
+import { Categories } from "../components/Categories";
 export default () => {
-  const { email } = useContext(AuthContext);
   return (
-    <Container>
-      <Header as="h1" textAlign="center">
-        Welcome {email}
-      </Header>
-    </Container>
+    <>
+      <Container>
+        <Categories />
+      </Container>
+    </>
   );
 };
