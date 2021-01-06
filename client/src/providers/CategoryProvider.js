@@ -15,18 +15,29 @@ export class CategoryProvider extends React.Component {
       .get("/api/categories")
       .then((res) => {
         console.log(res.data);
-        this.setState({categories: res.data});
+        this.setState({ categories: res.data });
       })
       .catch((err) => {
         console.log("error occured grabbing data");
       });
   };
 
-  render(){
-    return(
-      <CategoryContext.Provider value={{...this.state}}>
+  // createCategory = (category) => {
+  //   axios
+  //     .post("/api/categories")
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("error occured creating a category");
+  //     });
+  // };
+
+  render() {
+    return (
+      <CategoryContext.Provider value={{ ...this.state }}>
         {this.props.children}
       </CategoryContext.Provider>
-    )
+    );
   }
 }
