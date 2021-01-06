@@ -1,49 +1,59 @@
 import { useContext } from "react";
-import { Header, Table, Button } from "semantic-ui-react";
+import { Button, Header, Table } from "semantic-ui-react";
 import { CategoryContext } from "../providers/CategoryProvider";
 
-export const Categories = () => {
+const Categories = () => {
   const { categories } = useContext(CategoryContext);
-  console.log(categories);
 
-  const renderCategories = () =>{
-    return(
-      categories.map((category)=>(
-        <Table.HeaderCell key={category.id}>{category.name}</Table.HeaderCell>
-      ))
+  const renderCategories = () => {
+    if (categories) {
+      console.log('rendering');
+      return categories.map((category) => (
+        <Table.HeaderCell textAlign="center" key={category.id}>{category.name}</Table.HeaderCell>
+      ));
+    }
+  };
+
+  const renderBoard = (score) => {
+    return (
+      <Table.Row textAlign='center'>
+        <Table.Cell>{score}</Table.Cell>
+        <Table.Cell>{score}</Table.Cell>
+        <Table.Cell>{score}</Table.Cell>
+        <Table.Cell>{score}</Table.Cell>
+      </Table.Row>
     )
+  }
+
+  
+
+  const logCategories = () => {
+    if (categories) {
+      categories.map(c => (
+        console.log(c)
+      ));
+    }
   }
 
   return (
     <>
       <Header textAlign="center">Jeopardy!</Header>
-      <Table celled>
+      <Table celled fixed>
         <Table.Header>
           <Table.Row>
             {renderCategories()}
-            <Table.HeaderCell textAlign="center">
-              <Button icon="plus" />
-            </Table.HeaderCell>
+            {logCategories()}
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row>
-            <Table.Cell>cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
-          <Table.Row>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-            <Table.Cell>Cell</Table.Cell>
-          </Table.Row>
+          {renderBoard(100)}
+          {renderBoard(200)}
+          {renderBoard(300)}
+          {renderBoard(400)}
         </Table.Body>
       </Table>
     </>
   );
 };
+
+export default Categories;

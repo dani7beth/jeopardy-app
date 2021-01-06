@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import Axios from "axios";
 
 export const CategoryContext = React.createContext();
 export const CategoryConsumer = CategoryContext.Consumer;
@@ -11,10 +11,10 @@ export class CategoryProvider extends React.Component {
 
   //get the categories from API
   componentDidMount = () => {
-    axios
+    Axios
       .get("/api/categories")
       .then((res) => {
-        console.log(res.data);
+        console.log('setting state');
         this.setState({ categories: res.data });
       })
       .catch((err) => {
