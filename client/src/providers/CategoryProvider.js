@@ -6,16 +6,16 @@ export const CategoryConsumer = CategoryContext.Consumer;
 
 export class CategoryProvider extends React.Component {
   state = {
-    categories: null,
+    game: null,
   };
 
   //get the categories from API
   componentDidMount = () => {
     Axios
-      .get("/api/categories")
+      .get("/api/new_game")
       .then((res) => {
         console.log('setting state');
-        this.setState({ categories: res.data });
+        this.setState({ game: res.data });
       })
       .catch((err) => {
         console.log("error occured grabbing data");

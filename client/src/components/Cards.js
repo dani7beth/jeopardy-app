@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import {  Table } from "semantic-ui-react";
+import { Table , Card} from "semantic-ui-react";
 
 const Cards = ({ categoryID }) => {
   const [cards, setCards] = useState([]);
@@ -16,20 +16,16 @@ const Cards = ({ categoryID }) => {
       });
   }, []);
 
-  const logCards = () =>{
-    if(cards){
-      return(
-        cards.map((card)=> (
-          <Table.Cell>{card.points}</Table.Cell>
-        ))
-      )
+  const logCards = () => {
+    if (cards) {
+      return cards.map((card) => (
+        <Table.Row>
+            <Table.Cell key={card.id}>{card.points}</Table.Cell>
+        </Table.Row>
+      ));
     }
-  }
+  };
 
-  return (
-      <Table.Row>
-      {logCards()}
-      </Table.Row>
-  );
+  return <>{logCards()}</>;
 };
 export default Cards;
