@@ -1,7 +1,7 @@
-import Axios from "axios";
 import { useContext } from "react";
 import { Container, Header, Table } from "semantic-ui-react";
 import { CategoryContext } from "../providers/CategoryProvider";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const { game } = useContext(CategoryContext);
@@ -24,17 +24,23 @@ const Categories = () => {
   };
 
   const renderCards = (cards) => {
-    return cards.map((card) => (
-      <Table.Row>
-        <Table.Cell>{card.points}</Table.Cell>
-      </Table.Row>
-    ));
+    if (cards) {
+      return cards.map((card) => (
+        <Table.Row>
+          <Link to={`/cards/${card.id}`}>
+            <Table.Cell>{card.points}</Table.Cell>
+          </Link>
+        </Table.Row>
+      ));
+    }
   };
 
   const getCards = () => {
-    return game.map((categories) => (
-      <Table.Cell>{renderCards(categories.cards)}</Table.Cell>
-    ));
+    if (game) {
+      return game.map((categories) => (
+        <Table.Cell>{renderCards(categories.cards)}</Table.Cell>
+      ));
+    }
   };
 
   return (
