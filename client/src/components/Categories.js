@@ -1,30 +1,57 @@
 import Axios from "axios";
 import { useContext } from "react";
-import { Header, Tab, Table } from "semantic-ui-react";
+import { Container, Header, Table } from "semantic-ui-react";
 import { CategoryContext } from "../providers/CategoryProvider";
-import Cards from "./Cards";
 
 const Categories = () => {
   const { game } = useContext(CategoryContext);
 
-  const renderCategories = () => {
+  const logCategories = () => {
     if (game) {
       console.log("rendering");
-      return game.map((category) => console.log(category));
+      return game.map((categories) => console.log(categories));
     }
   };
 
-  // const logCategories = () => {
-  //   if (categories) {
-  //     categories.map((c) => console.log(c));
-  //   }
-  // };
+  const renderGame = () => {
+    if (game) {
+      return game.map((categories) => (
+        <>
+          <Table.HeaderCell singleLine>{categories.name}</Table.HeaderCell>
+        </>
+      ));
+    }
+  };
+
+  const renderCards = (cards) => {
+    return cards.map((card) => (
+      <Table.Row>
+        <Table.Cell>{card.points}</Table.Cell>
+      </Table.Row>
+    ));
+  };
+
+  const getCards = () => {
+    return game.map((categories) => (
+      <Table.Cell>{renderCards(categories.cards)}</Table.Cell>
+    ));
+  };
 
   return (
-    <>
-      <Header textAlign="center">Jeopardy!</Header>
-      {renderCategories()}
-    </>
+    <Container>
+      <Header as="h1" textAlign="center">
+        Anime Jeopardy!
+      </Header>
+      <Table celled fixed>
+        <Table.Header>
+          <Table.Row>{renderGame()}</Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>{getCards()}</Table.Row>
+        </Table.Body>
+      </Table>
+      {logCategories()}
+    </Container>
   );
 };
 

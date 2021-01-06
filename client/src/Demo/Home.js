@@ -3,7 +3,7 @@ import Categories from "../components/Categories";
 export default () => {
   return (
     <>
-      <Container>
+      <Container style={{paddingTop: '5%'}}>
         <Categories />
       </Container>
     </>
