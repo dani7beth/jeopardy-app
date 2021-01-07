@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Container, Header, Table } from "semantic-ui-react";
 import { CategoryContext } from "../providers/CategoryProvider";
 import { Link } from "react-router-dom";
@@ -27,7 +27,7 @@ const Categories = () => {
     if (cards) {
       return cards.map((card) => (
         <Table.Row>
-          <Link to={`/cards/${card.id}`}>
+           <Link to={`/cards/${card.id}`}>
             <Table.Cell>{card.points}</Table.Cell>
           </Link>
         </Table.Row>
