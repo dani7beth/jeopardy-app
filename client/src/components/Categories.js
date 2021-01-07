@@ -4,7 +4,7 @@ import { CategoryContext } from "../providers/CategoryProvider";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
-  const { game } = useContext(CategoryContext);
+  const { game , totalPoints} = useContext(CategoryContext);
 
   const logCategories = () => {
     if (game) {
@@ -48,6 +48,7 @@ const Categories = () => {
       <Header as="h1" textAlign="center">
         Anime Jeopardy!
       </Header>
+      <Header as='h2'>Points: {totalPoints}</Header>
       <Table celled fixed>
         <Table.Header>
           <Table.Row>{renderGame()}</Table.Row>

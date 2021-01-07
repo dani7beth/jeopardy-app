@@ -1,9 +1,10 @@
-import { useContext} from "react";
-import { Form, Header, Input } from "semantic-ui-react";
+import { useContext, useState} from "react";
+import { Form, Header, Input, Button } from "semantic-ui-react";
 import { CategoryContext } from "../providers/CategoryProvider";
 
 const Card = (props) => {
-  const { game } = useContext(CategoryContext);
+  const { game, totalPoints, getTotalPoints } = useContext(CategoryContext);
+  const [color, setColor] = useState('');
 
   const logCard = () => {
     if (game) {
@@ -15,7 +16,8 @@ const Card = (props) => {
                 <Header as="h1" textAlign="center" style={{ paddingTop: "5%" }}>
                   {card.question}
                 </Header>
-                <div>{getMultiAnswers(card.dummyanswers)}</div>
+                <div>{getMultiAnswers(card.dummyanswers, card.answer, card.points)}</div>
+                <p>Total Points: {totalPoints}</p>
               </>
             );
           }
@@ -36,13 +38,20 @@ const Card = (props) => {
     }
   };
 
-  const getMultiAnswers = (answers) => {
+  const checkAnswer = (answer, correctAnswer, points) =>{
+    if(answer === correctAnswer){
+      setColor('green')
+      getTotalPoints(points)
+    }else{
+      setColor('red')
+    }
+  }
+
+  const getMultiAnswers = (answers, correctAnswer, points) => {
     if (answers) {
-      //needed to shuffle answers around so the actual answer isnt obvious
-      answers = answers.sort(() => Math.random() - 0.5);
-      return answers.map((answer, i) => (
+      return answers.map((answer) => (
         <p>
-          {i + 1}. {answer}
+          <Button onClick={()=> checkAnswer(answer, correctAnswer, points)} color={color}>{answer}</Button>
         </p>
       ));
     }

@@ -5,8 +5,11 @@ export const CategoryContext = React.createContext();
 export const CategoryConsumer = CategoryContext.Consumer;
 
 export class CategoryProvider extends React.Component {
+  
   state = {
     game: null,
+    totalPoints: 0,
+    getTotalPoints: (x)=> this.getTotalPoints(x),
   };
 
   //get the categories from API
@@ -22,6 +25,10 @@ export class CategoryProvider extends React.Component {
       });
   };
 
+  getTotalPoints = (points) =>{
+    this.state.totalPoints += points
+    this.setState({totalPoints: this.state.totalPoints})
+  }
   // createCategory = (category) => {
   //   axios
   //     .post("/api/categories")
