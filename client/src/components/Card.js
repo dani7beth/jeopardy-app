@@ -64,7 +64,9 @@ const Card = (props) => {
   };
 
   const checkAnswer = (answer, correctAnswer, points) => {
-    if (answer === correctAnswer) {
+    //tolower provides the answer to not worry about case sensitivity
+
+    if (answer.toLowerCase() === correctAnswer.toLowerCase()) {
       setColor("green");
       getTotalPoints(points);
     } else {
@@ -76,6 +78,8 @@ const Card = (props) => {
 
   const getMultiAnswers = (answers, correctAnswer, points) => {
     if (answers) {
+      //need to randomize answers so the correct one isnt obvious
+      answers = answers.sort(() => Math.random() - 0.5);
       return answers.map((answer) => (
         <p>
           <Button onClick={() => checkAnswer(answer, correctAnswer, points)}>

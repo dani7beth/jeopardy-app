@@ -5,19 +5,18 @@ export const CategoryContext = React.createContext();
 export const CategoryConsumer = CategoryContext.Consumer;
 
 export class CategoryProvider extends React.Component {
-  
   state = {
     game: null,
     totalPoints: 0,
-    getTotalPoints: (x)=> this.getTotalPoints(x),
+    getTotalPoints: (x) => this.getTotalPoints(x),
+    
   };
 
   //get the categories from API
   componentDidMount = () => {
-    Axios
-      .get("/api/new_game")
+    Axios.get("/api/new_game")
       .then((res) => {
-        console.log('setting state');
+        console.log("setting state");
         this.setState({ game: res.data });
       })
       .catch((err) => {
@@ -25,10 +24,12 @@ export class CategoryProvider extends React.Component {
       });
   };
 
-  getTotalPoints = (points) =>{
-    this.state.totalPoints += points
-    this.setState({totalPoints: this.state.totalPoints})
-  }
+  
+  //dynamically keep points
+  getTotalPoints = (points) => {
+    this.state.totalPoints += points;
+    this.setState({ totalPoints: this.state.totalPoints });
+  };
   // createCategory = (category) => {
   //   axios
   //     .post("/api/categories")
