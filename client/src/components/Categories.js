@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Container, Header, Table } from "semantic-ui-react";
 import { CategoryContext } from "../providers/CategoryProvider";
 import { Link } from "react-router-dom";
