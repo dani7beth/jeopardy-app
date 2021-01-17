@@ -7,7 +7,7 @@ export default () => {
       <Container style={{paddingTop: '5%'}}>
         <Categories />
         <br />
-        {/* <Link to='/create'><Header>Add a category to the game</Header></Link> Form creates but issue with appending answersto answer array*/}
+        <Link to='/create'><Header>Add a category to the game</Header></Link>
       </Container>
     </>
   );

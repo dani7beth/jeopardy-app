@@ -60,8 +60,10 @@ export default (props) => {
       q4_dummyanswers,
     });
     console.log(res);
-    
+    console.log(dummyAnswer);
+    setQ1_DummyAnswers([...q1_dummyanswers, dummyAnswer]);
     console.log(q1_dummyanswers);
+
     props.history.push('/');
   };
   const questionOptions = [
@@ -96,7 +98,7 @@ export default (props) => {
       setQ4_DummyAnswers([...q4_dummyanswers,q4_answer]);
     }
   };
-
+  
   return (
     <Form onSubmit={handleSubmit}>
       <Header as="h6">
@@ -136,15 +138,15 @@ export default (props) => {
           <Header>Answers</Header>
           <Form.Input 
             label="Dummy Answer 1"
-            onChange={(e, {value})=>{setDummyAnswer(value); setQ1_DummyAnswers([...q1_dummyanswers, dummyAnswer])}}
+            onChange={(e, {value})=>setDummyAnswer(value)}
           />
           <Form.Input 
             label="Dummy Answer 2"
-            onChange={(e, {value})=>{setDummyAnswer(value); setQ1_DummyAnswers([...q1_dummyanswers, dummyAnswer])}}
+            onChange={(e, {value})=>setDummyAnswer(value)}
           />
           <Form.Input 
             label="Dummy Answer 3"
-            onChange={(e, {value})=>{setDummyAnswer(value); setQ1_DummyAnswers([...q1_dummyanswers, dummyAnswer])}}
+            onChange={(e, {value})=>setDummyAnswer(value)}
           />
         </>
       )}
